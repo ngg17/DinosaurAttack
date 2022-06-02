@@ -6,7 +6,7 @@ AFRAME.registerComponent("enemy-fireballs", {
     shootEnemyMonster: function () {
         var scene = document.querySelector("#scene");
         var enemyMonster = document.querySelectorAll(".enemy");   
-        for (var i = 0; i < enemyMonster.length; i++) {
+        for (var i = 0; i < enemyMonster.length; i=i+2) {
         var fireball = document.createElement("a-entity");
         fireball.setAttribute("class","fireball")
         fireball.setAttribute("gltf-model", "./models/fireball/scene.gltf");
@@ -41,6 +41,7 @@ AFRAME.registerComponent("enemy-fireballs", {
             if (e.detail.body.el.id === "weapon") {               
                 if (playerLife > 0) {
                     playerLife -= 1;
+                    scene.removeChild(fireball);
                     element.setAttribute("text", {
                         value: playerLife
                     });
